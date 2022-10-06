@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+     <description>ROOT Contexto de la aplicación</description>
+     <import resource="classpath*:ar/com/osde/framework/spring/osde-framework-standard-spring.xml" />
+
+     <import resource="classpath*:spring/backend/osde-framework-*-spring.xml" />
+
+     <!--
+     @TODO ¿Necesitamos agregar un contexto para realizar pruebas de integración con la capa de servicios?
+     <import resource="classpath:*spring/test/osde-framework-*custom-spring.xml"
+     -->
+</beans>

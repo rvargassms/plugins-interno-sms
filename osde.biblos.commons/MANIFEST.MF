@@ -1,0 +1,4 @@
+Plugin-Name: dotCMS Commons
+Manifest-Version: 1.0
+Plugin-Version: 2.1.4
+Author: dotCMS

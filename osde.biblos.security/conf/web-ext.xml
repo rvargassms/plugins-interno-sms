@@ -1,0 +1,60 @@
+<servlet>
+	<servlet-name>OsdeRestServicesLoaderServlet</servlet-name>
+	<servlet-class>com.biblos.services.rest.OsdeRestServicesLoader</servlet-class>
+	<load-on-startup>2</load-on-startup>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>OsdeRestServicesLoaderServlet</servlet-name>
+	<url-pattern>/OsdeRestServicesLoader.do</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ErrorPointServlet</servlet-name>
+	<servlet-class>com.biblos.servlets.ErrorPointServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ErrorPointServlet</servlet-name>
+	<url-pattern>/OsdeErrorLogin</url-pattern>
+</servlet-mapping>
+
+<servlet>
+		<servlet-name>RESTAPI</servlet-name>
+		<servlet-class>
+		  com.dotcms.rest.servlet.ReloadableServletContainer
+		</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.mediaTypeMappings</param-name>
+			<param-value>txt : text/plain, xml : application/xml, json : application/json, js : application/javascript</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+</servlet>
+	
+<servlet-mapping>
+	<servlet-name>RESTAPI</servlet-name>
+	<url-pattern>/api/*</url-pattern>
+</servlet-mapping>
+
+<filter>
+	<filter-name>osdeUserFrontEndFilter</filter-name>
+	<filter-class>ar.com.osde.dotcms.frontend.IntranetAutoLoginFilter
+	</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>osdeUserFrontEndFilter</filter-name>
+	<url-pattern>/dotCMS/login</url-pattern>
+</filter-mapping>
+
+<filter>
+	<filter-name>osdeLoginFilter</filter-name>
+	<filter-class>com.biblos.filters.interceptor.LoginOsdeInterceptor
+	</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>osdeLoginFilter</filter-name>
+	<url-pattern>/admin</url-pattern>
+</filter-mapping>

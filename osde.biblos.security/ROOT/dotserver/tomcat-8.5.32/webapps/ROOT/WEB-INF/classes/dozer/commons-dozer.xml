@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+        "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+    <mapping>
+        <class-a>ar.com.osde.framework.entities.user.impl.UserIntranet</class-a>
+        <class-b>ar.com.osde.dotcms.backend.dtos.UsuarioDTO</class-b>
+        <field>
+            <a>firstName</a>
+            <b>nombre</b>
+        </field>
+        <field>
+            <a>lastName</a>
+            <b>apellido</b>
+        </field>
+        <field>
+            <a>userName</a>
+            <b>username</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>ar.com.osde.framework.entities.user.Permission</class-a>
+        <class-b>ar.com.osde.dotcms.backend.dtos.PermisoConcretoDTO</class-b>
+        <field>
+            <a>code</a>
+            <b>permiso</b>
+        </field>
+        <field>
+            <a>name</a>
+            <b>nombre</b>
+        </field>
+        <field>
+            <a>description</a>
+            <b>descripcion</b>
+        </field>
+    </mapping>
+</mappings>

@@ -1,0 +1,23 @@
+
+[workers]
+# pueden paquetes de las cuales se levantan todas las clases para crear un pool por cada una
+#package=ar.com...
+
+# o pueden ser clases
+class=com.biblos.worker.ActualizarUsuarioPermisos
+
+[pool]
+# límite en el número de instancias de objeto asignadas por clave.
+maxTotalPerKey=1
+
+# límite en el número de instancias "inactivas" por clave.
+maxIdlePerKey=1
+
+# el número mínimo de objetos inactivos para mantener en cada uno de los subgrupos con clave.
+minIdlePerKey=1
+
+# es necesario establecer el máximo total entre todos los pools definidos
+maxTotal=1
+#minIdle=
+
+testOnBorrow=true

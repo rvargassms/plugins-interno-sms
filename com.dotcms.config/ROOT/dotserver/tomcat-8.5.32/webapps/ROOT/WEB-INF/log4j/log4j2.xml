@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="trace">
+
+  <Properties>
+    <Property name="DOTCMS_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms.log</Property>
+    <Property name="DOTCMS_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-%i.log.gz</Property>
+    <Property name="SECURITY_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-security.log</Property>
+    <Property name="SECURITY_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-security-%i.log.gz</Property>
+    <Property name="SITESEARCH_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-sitesearch.log</Property>
+    <Property name="SITESEARCH_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-sitesearch-%i.log.gz</Property>
+    <Property name="AUDIT_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-adminaudit.log</Property>
+    <Property name="AUDIT_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-adminaudit-%i.log.gz</Property>
+    <Property name="USERACTIVITY_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-userActivity.log</Property>
+    <Property name="USERACTIVITY_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-userActivity-%i.log.gz</Property>
+    <Property name="TEST_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-test.log</Property>
+    <Property name="TEST_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-test-%i.log.gz</Property>
+    <Property name="PUSHPUBLISH_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-pushpublish.log</Property>
+    <Property name="PUSHPUBLISH_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-pushpublish-%i{BundleId}.log.gz</Property>
+    <Property name="VELOCITY_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-velocity.log</Property>
+    <Property name="VELOCITY_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-velocity-%i.log.gz</Property>
+    <Property name="PATTERN">%-5level %d %c:%M(%L): %m%n</Property>
+    <Property name="CONSOLE_PATTERN">%-5level %d %c:%M(%L): %m%n</Property>
+    <Property name="MESSAGE_PATTERN">[%d{dd/MM/yy HH:mm:ss:SSS z}] %5p %c{2}: %m%n</Property>    
+    <Property name="SYNC_PROCESS_LOG_FILE">${sys:DOTCMS_LOGGING_HOME}/dotcms-synchr-process.log</Property>
+    <Property name="SYNC_PROCESS_FILENAME_PATTERN">${sys:DOTCMS_LOGGING_HOME}/archive/dotcms-synchr-process-%i.log.gz</Property>
+  </Properties>
+
+  <Appenders>
+             <!-- workflow -->
+             
+             <JDBC name="databaseAppenderWorkflow" tableName="REPORTE_WORKFLOW">
+        	<DataSource jndiName="java:/comp/env/jdbc/dotCMSPool" />
+             <Column name="nro_tramite" pattern="%X{nroTramite}" isUnicode="false"/>
+             <Column name="nombre_contenido" pattern="%X{nombreContenido}" isUnicode="false"/>
+             <Column name="id_contenido" pattern="%X{identifier}" isUnicode="false"/>
+             <Column name="fecha_ejecucion" isEventTimestamp="true" />
+             <Column name="usuario_mt" pattern="%X{usuarioMT}" isUnicode="false"/>
+             <Column name="usuario_nombre" pattern="%X{usuarioNombre}" isUnicode="false"/>
+             <Column name="accion" pattern="%X{accion}" isUnicode="false"/>
+             <Column name="estado_anterior" pattern="%X{estadoAnterior}" isUnicode="false"/>
+             <Column name="estado_siguiente" pattern="%X{estadoSiguiente}" isUnicode="false"/>
+             <Column name="host" pattern="%X{host}" isUnicode="false"/>
+             <Column name="pag_referidas" pattern="%X{pagReferidas}" isUnicode="false"/>
+             <Column name="comentarios" pattern="%X{comentarios}" isUnicode="false"/>
+             <Column name="solicitud" pattern="%X{solicitud}" isUnicode="false"/>   
+             <Column name="solapa" pattern="%X{solapa}" isUnicode="false"/>
+             <Column name="asignado" pattern="%X{asignado}" isUnicode="false"/>
+             <Column name="pag_originante" pattern="%X{pag_originante}" isUnicode="false"/>         
+           </JDBC>
+             
+             <!-- ingreso -->
+           <JDBC name="databaseAppenderIngreso" tableName="REPORTE_INGRESO">
+        	 <DataSource jndiName="java:/comp/env/jdbc/dotCMSPool" />
+             <Column name="fecha_ingreso" isEventTimestamp="true" />
+             <Column name="usuario_mt" pattern="%X{usuarioMT}" isUnicode="false"/>
+             <Column name="usuario_nombre" pattern="%X{usuarioNombre}" isUnicode="false"/>
+             <Column name="explorador" pattern="%X{explorador}" isUnicode="false"/>
+             <Column name="version_explorador" pattern="%X{versionExplorador}" isUnicode="false"/>
+             <Column name="sistema_operativo" pattern="%X{sistemaOperativo}" isUnicode="false"/>
+             <Column name="dispositivo_ingreso" pattern="%X{dispositivoIngreso}" isUnicode="false"/>
+           </JDBC>
+           
+           <!-- clicks -->
+           <JDBC name="databaseAppenderClicks" tableName="REPORTE_CLICKS">
+        	 <DataSource jndiName="java:/comp/env/jdbc/dotCMSPool" />
+             <Column name="usuario_mt" pattern="%X{usuarioMT}" isUnicode="false"/>
+             <Column name="usuario_nombre" pattern="%X{usuarioNombre}" isUnicode="false"/>
+             <Column name="host" pattern="%X{host}" isUnicode="false"/>
+             <Column name="url" pattern="%X{url}" isUnicode="false"/>
+             <Column name="solapa" pattern="%X{solapa}" isUnicode="false"/>
+             <Column name="id_pagina" pattern="%X{idPagina}" isUnicode="false"/>
+             <Column name="fecha" isEventTimestamp="true" />
+             <Column name="uso_buscador" pattern="%X{usoBuscador}" isUnicode="false"/> 
+           </JDBC>
+                
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${CONSOLE_PATTERN}"/>
+        </Console>
+		
+        <!-- Async appenders -->
+		<Async name="pluggin">
+            <AppenderRef ref="ASYNC-PLUGINS"/>
+        </Async>
+        <Async name="generic">
+            <AppenderRef ref="GENERIC-FILE"/>
+        </Async>
+        <Async name="security">
+            <AppenderRef ref="SECURITY-FILE"/>
+        </Async>
+        <Async name="sitesearch">
+            <AppenderRef ref="SITESEARCH-FILE"/>
+        </Async>
+        <Async name="adminaudit">
+            <AppenderRef ref="ADMINAUDIT-FILE"/>
+        </Async>
+        <Async name="useractivity">
+            <AppenderRef ref="USERACTIVITY-FILE"/>
+        </Async>
+        <Async name="pushpublish">
+            <AppenderRef ref="PUSHPUBLISH-FILE"/>
+        </Async>
+        <Async name="test">
+            <AppenderRef ref="TEST-FILE"/>
+        </Async>
+        <Async name="velocity">
+            <AppenderRef ref="VELOCITY-FILE"/>
+        </Async>
+        
+        <!-- workflow -->
+        <Async name="workflow">
+            <AppenderRef ref="databaseAppenderWorkflow"/>
+        </Async>
+        
+        <!-- ingreso -->
+        <Async name="ingreso">
+            <AppenderRef ref="databaseAppenderIngreso"/>
+        </Async>
+        
+        <!-- clicks -->
+        <Async name="clicks">
+            <AppenderRef ref="databaseAppenderClicks"/>
+        </Async>
+        
+        <Async name="sync_process">
+            <AppenderRef ref="SYNC-PROCESS"/>
+        </Async>
+        
+        <!--  Generic Logging File -->		
+		<RollingFile name="ASYNC-PLUGINS" 
+					 fileName="${sys:DOTCMS_LOGGING_HOME}/dotcms-plugins.log"
+                     filePattern="${DOTCMS_FILENAME_PATTERN}"
+                     immediateFlush="false">
+			<PatternLayout pattern="${MESSAGE_PATTERN}"/>
+			 <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+		</RollingFile>
+		
+        <RollingFile name="GENERIC-FILE"
+                     fileName="${DOTCMS_LOG_FILE}"
+                     filePattern="${DOTCMS_FILENAME_PATTERN}"
+                     immediateFlush="false">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <!-- Specific Logging Files -->
+        <RollingFile name="SECURITY-FILE"
+        			 fileName="${sys:DOTCMS_LOGGING_HOME}/dotcms-security.log"
+                     filePattern="${SECURITY_FILENAME_PATTERN}"
+                     immediateFlush="false">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="SITESEARCH-FILE"
+        			 fileName="${SITESEARCH_LOG_FILE}"
+                     filePattern="${SITESEARCH_FILENAME_PATTERN}">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="ADMINAUDIT-FILE"
+        			 fileName="${AUDIT_LOG_FILE}"
+                     filePattern="${AUDIT_FILENAME_PATTERN}">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="USERACTIVITY-FILE"
+        			 fileName="${USERACTIVITY_LOG_FILE}"
+                     filePattern="${USERACTIVITY_FILENAME_PATTERN}">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="TEST-FILE"
+        			 fileName="${TEST_LOG_FILE}"
+                     filePattern="${TEST_FILENAME_PATTERN}">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="PUSHPUBLISH-FILE"
+                     fileName="${PUSHPUBLISH_LOG_FILE}"
+                     filePattern="${PUSHPUBLISH_FILENAME_PATTERN}">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="VELOCITY-FILE"
+        			 fileName="${VELOCITY_LOG_FILE}"
+                     filePattern="${VELOCITY_FILENAME_PATTERN}">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+		<RollingFile name="SYNC-PROCESS"
+        			 fileName="${SYNC_PROCESS_LOG_FILE}"
+                     filePattern="${SYNC_PROCESS_FILENAME_PATTERN}">
+            <PatternLayout pattern="${MESSAGE_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+    </Appenders>
+    <Loggers>
+        <Root level="ERROR">
+            <AppenderRef ref="generic"/>
+        </Root>
+        <Logger name="com.dotcms.repackage.org.directwebremoting" level="error" additivity="false">
+            <AppenderRef ref="generic"/>
+        </Logger>
+        <Logger name="com.dotmarketing.portlets.contentlet.business.ReindexThread" level="error" additivity="false">
+            <AppenderRef ref="generic"/>
+        </Logger>
+        <Logger name="com.dotcms.repackage.com.bradmcevoy.http" level="error" additivity="false">
+            <AppenderRef ref="generic"/>
+        </Logger>
+        <Logger name="org.apache.tomcat.util.http.Parameters" level="fatal" additivity="false">
+            <AppenderRef ref="generic"/>
+        </Logger>
+        <Logger name="com.dotcms.repackage.com.sun.jersey.spi.container.servlet.WebComponent" level="error" additivity="false">
+            <AppenderRef ref="generic"/>
+        </Logger>
+        <Logger name="com.dotcms.repackage.org.directwebremoting.impl.DefaultConverterManager" level="fatal" additivity="false">
+            <AppenderRef ref="generic"/>
+        </Logger>
+        <Logger name="com.liferay.portal.action.LoginAction" level="error" additivity="false">
+            <AppenderRef ref="security"/>
+        </Logger>
+        <Logger name="com.liferay.portal.action.LogoutAction" level="error" additivity="false">
+            <AppenderRef ref="security"/>
+        </Logger>
+        <Logger name="com.liferay.portal.action.LoginAsAction" level="error" additivity="false">
+            <AppenderRef ref="security"/>
+        </Logger>
+        <Logger name="com.liferay.portal.action.LogoutAsAction" level="error" additivity="false">
+            <AppenderRef ref="security"/>
+        </Logger>
+        <Logger name="com.dotmarketing.util.SecurityLogger" level="error" additivity="false">
+            <AppenderRef ref="security"/>
+        </Logger>
+        <Logger name="org.apache.nutch" level="error" additivity="false">
+            <AppenderRef ref="sitesearch"/>
+        </Logger>
+        <Logger name="com.dotcms.repackage.org.apache.hadoop" level="error" additivity="false">
+            <AppenderRef ref="sitesearch"/>
+        </Logger>
+        <Logger name="com.dotmarketing.util.AdminLogger" level="error" additivity="false">
+            <AppenderRef ref="adminaudit"/>
+        </Logger>
+        <Logger name="com.dotmarketing.util.ActivityLogger" level="error" additivity="false">
+            <AppenderRef ref="useractivity"/>
+        </Logger>
+        <Logger name="com.dotmarketing.util.PushPublishLogger" level="error" additivity="false">
+            <AppenderRef ref="pushpublish"/>
+        </Logger>
+        <Logger name="com.dotmarketing.servlets.test.ServletTestRunner" level="error" additivity="false">
+            <AppenderRef ref="test"/>
+        </Logger>
+        <Logger name="com.dotmarketing.velocity.VelocityServlet" level="error" additivity="false">
+            <AppenderRef ref="velocity"/>
+        </Logger>
+        <Logger name="com.dotmarketing.viewtools" level="error" additivity="false">
+            <AppenderRef ref="velocity"/>
+        </Logger>
+        <Logger name="org.apache.velocity" level="error" additivity="false">
+            <AppenderRef ref="velocity"/>
+        </Logger>
+		<!-- Loggers para los plugins -->
+	<logger name="com.plugins.osde.dotCMS" additivity="false" level="error">
+
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="ar.com.osde.dotcms" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="osde.dotCMS.dependent" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="com.dotcms.rest" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="com.dotcms.rest.WorkflowRestService" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="com.dotcms.rest.FixMaquetasRestService" additivity="false" level="info">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	
+	<logger name="ar.com.osde.dotcms.backend.bo.impl.OsdeSecurityBOImpl" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="ar.com.osde.dotcms.backend.dao.impl.OsdeSecurityDAOImpl" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="com.dotmarketing.osgi.hooks" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="ar.com.osde.dotcms.cxf" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="com.dotmarketing.portlets.workflows.business.WorkflowAPIImpl" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+	<logger name="com.dotmarketing.portlets.workflows.model.WorkflowProcessor" additivity="false" level="error">
+		
+		<AppenderRef ref="pluggin"/>
+	</logger>
+             <!-- workflow -->
+             <logger name="com.biblos.reportes.ReporteWorkflow" additivity="false" level="INFO">
+                    <AppenderRef ref="workflow"/>
+	</logger>
+             <!-- ingreso -->
+             <logger name="com.biblos.reportes.ReporteIngreso" additivity="false" level="INFO">
+                    <AppenderRef ref="ingreso"/>
+	</logger>
+             <!-- clicks -->
+             <logger name="com.biblos.reportes.ReporteClicks" additivity="false" level="INFO">
+                    <AppenderRef ref="clicks"/>
+	</logger>
+	
+	<!-- User Story: Show the log of the synchronization process of user permits from the intranet to backoffice, on dotcms application. -->
+	<logger name="com.biblos.bo.impl" additivity="false" level="error">
+		<AppenderRef ref="sync_process"/>
+	</logger>
+	<logger name="com.biblos.bo.impl" additivity="false" level="info">
+		<AppenderRef ref="sync_process"/>
+	</logger>
+	<logger name="com.biblos.adapter.impl" additivity="false" level="error">
+		<AppenderRef ref="sync_process"/>
+	</logger>
+	<logger name="com.biblos.adapter.impl" additivity="false" level="info">
+		<AppenderRef ref="sync_process"/>
+	</logger>
+	
+	
+	
+    </Loggers>
+       
+		
+</Configuration>

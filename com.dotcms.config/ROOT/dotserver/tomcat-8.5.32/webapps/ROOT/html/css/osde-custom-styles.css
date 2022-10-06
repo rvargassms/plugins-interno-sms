@@ -1,0 +1,145 @@
+.mceCustomOSDEImportant, .mceCustomOSDEAdv, .mceCustomOSDERegistration, .mceCustomOSDEChanels {
+    padding:12px 10px 12px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    /*border-radius: 10px;*/
+}
+
+.mceCustomOSDEImportant {
+    background-color: #FBF3D9;
+    border: 1px solid #F1D677;
+    background-image: url('/imagenes/warning.gif');
+    color: rgb(102, 102, 102);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13.3333330154419px;
+    font-weight: normal;
+}
+
+.mceCustomOSDEAdv {
+    background-color: #FBD6DD;
+    border: 1px solid #F46C73;
+}
+
+.mceCustomOSDERegistration {
+    background-color: #D5E1EC;
+    border: 1px solid #356FA5;
+}
+
+.mceCustomOSDEChanels {
+    background-color: #DFD;
+	border: 1px solid #A0BBA0
+}
+
+.wrapColapsable {
+	border : 1px dotted black;
+    margin : 5px 5px 5px 5px;
+}
+
+.wrapColapsable .tituloColapsable {
+    border-bottom: 1px dotted black;
+    width: 97%;
+    float: left;
+    border-bottom : 1px dotted black;
+}
+
+.wrapColapsable .icono {
+    width: 2%;
+    float: left;
+    border-right : 1px dotted black;
+    border-bottom : 1px dotted black;
+}
+
+.panel-title {
+    font-weight: bold;
+    font-size: 13px !important;
+}
+
+.panel {
+   margin: 3px 3px 10px 3px !important; 
+   width: 99%;
+}
+
+.panel-heading {
+	padding: 3px 15px !important;
+}
+
+.panel-heading-success {
+	border: 1px solid #d6e9c6 !important;
+	color: #3c763d !important;
+	background-color: #dff0d8;
+}
+
+.maqueta {
+	border: 1px dashed #BBB !important;
+}
+
+.panel-heading-info {
+	color: #31708f !important;
+	background-color: #d9edf7 !important;
+	border:1px solid #bce8f1 !important;
+}
+
+.panel-heading p {
+	margin: 0;
+}
+
+.panel-body {
+	padding-bottom: 5px !important;
+}
+
+.cloak-body {
+	border: 1px solid #bce8f1 
+}
+
+.cloakClose{
+	 background-image: url('../imagenes/cerrar.gif');
+	 background-position: 3px; 
+	 background-repeat: no-repeat; 
+	 cursor:pointer;
+}
+
+.cloakOpen{
+	 background-image: url('../imagenes/abrir.gif');
+	 background-position: 3px;
+	 background-repeat: no-repeat;
+	 cursor:pointer; 
+	 display:none;
+}
+
+.table-cloak-body-closed {
+	background-color: #F0F0F0 !important;
+}
+
+.table-cloak-body-open {
+	background: white !important;
+}
+
+.panel-heading-maqueta {
+	text-align: center;
+}
+
+.tituloColapsable *, .cloakToggle * {
+	display: inline;
+}
+
+/** Formatos OSDE **/
+h1.h1-osde {
+	color: rgb(0, 60, 121);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14.6666660308838px;
+    font-weight: bold;
+}
+h2.h2-osde {
+	color: rgb(0, 60, 121);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+p.p-osde {
+	color: rgb(102, 102, 102);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13.3333330154419px;
+    font-weight: normal;
+}
+/** Fin Formatos OSDE **/

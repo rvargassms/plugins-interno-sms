@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	<description>
+		Contexto para la auditoria, este archivo puede ir fuera de la
+		aplicacion
+	</description>
+
+	<!--  MBeans Custom  -->
+	<!-- bean parent="auditing.mbean.custom.base"
+		name="ar.com.osde.framework.auditing-osde-framework-batch-console:type=batchProcessExecution.hibernate.dao-getAll">
+		<property name="currentMonitorName" value="batchProcessExecution.hibernate.dao-getAll" />
+	</bean -->
+
+	<!--
+		COPIAR EN jboss.home/osde/conf/
+		
+		Este archivo solo definen los aspectos, toda la configuracion real de
+		controllers y extractores de nombres de monitores, etc esta
+		configurada en la distribucion base del framework, componente
+		auditoria y de no ser importada por la aplicacion en el root-context
+		debe ser importada dentro de este archivo utilizando la siguiente
+		linea
+	-->
+	<!--
+		import de la base de auditoria, los beans y controles pero sin los
+		aspectos, este archivo se debe importar manualmente en caso que la
+		aplicacion no lo importe. POr default todas las aplicaciones del
+		framework deberian importar la base, dejando la auditoria desactivada
+		hasta que se habilitan los aspectos
+	-->
+	<!--
+		<import
+		resource="classpath*:ar/com/osde/framework/auditing/spring/osde-framework-base-*-spring.xml"
+		/>
+	-->
+	<!-- ********* Configuracion de AOP para auditoria ********* -->
+	<aop:config proxy-target-class="false">
+		<!--
+			Los pointcuts utilizados son los definidos en el archivo del
+			componente spriong que define la arquitectura general de la
+			aplicacion
+		-->
+		<!-- AOP para auditoria al layer DAO -->
+<!-- 		<aop:aspect ref="aop.bo.auditing" order="1"> -->
+<!-- 			<aop:around method="audit" -->
+<!-- 				pointcut-ref="osde.framework.archtytecture.business.operation.pointcut" /> -->
+<!-- 		</aop:aspect> -->
+		<!-- AOP para auditoria al layer BO -->
+<!-- 		<aop:aspect ref="aop.dao.auditing" order="1"> -->
+<!-- 			<aop:around method="audit" -->
+<!-- 				pointcut-ref="osde.framework.archtytecture.dao.operation.pointcut" /> -->
+<!-- 		</aop:aspect> -->
+		<!-- AOP de auditoria para el componente de seguridad -->
+<!-- 		<aop:aspect ref="aop.auditing" order="1"> -->
+<!-- 			<aop:around method="audit" -->
+<!-- 				pointcut-ref="osde.framework.archtytecture.security.operation.pointcut" /> -->
+<!-- 		</aop:aspect> -->
+
+		<!-- AOP para auditoria al layer WEB -->
+		<!-- aop:aspect ref="aop.web.auditing" order="1">
+			<aop:around method="audit"
+				pointcut-ref="osde.framework.archtytecture.web.operation.pointcut" />
+		</aop:aspect -->
+	</aop:config>
+</beans>

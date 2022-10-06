@@ -1,0 +1,9 @@
+<portlet>
+		<portlet-name>OSDE_ADMIN_PANEL</portlet-name>
+		<display-name>Osde Admin Panel</display-name>
+		<portlet-class>com.liferay.portlet.JSPPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/plugins/osde.biblos.security/osdeAdminPanel.jsp</value>
+		</init-param>
+	</portlet>

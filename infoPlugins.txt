@@ -1,0 +1,56 @@
+# Plugins
+
+
+Repositorio de los plugins para DotCMS
+
+### Pasos a seguir para deployar ###
+
+1. Bajamos el servidor utilizando ./bin/shutdown.sh
+2. Nos posicionamos en la carpeta dotCMS_5.1.6/ y desde la linea de comandos hacemos: ./bin/undeploy-plugins.sh
+**NOTA:** Este paso es solamente para el caso de que tengamos plugins deployados anteriormente
+3. Modificamos el archivo de plugin.xml agregando los plugins en ordem de ejecución, ejemplo:
+```
+<plugins>
+	<plugin>
+		<id>osde.biblos.authentication</id>
+		<id>osde.biblos.authorization</id>
+        <id>osde.biblos.rest</id>
+		<id>osde.biblos.workflow</id>
+		<id>osde.biblos.service</id>
+		<id>osde.biblos.common</id>
+	</plugin>
+</plugins>
+```
+4. Nos posicionamos en la carpeta dotCMS_5.1.6/ y desde la linea de comandos hacemos: ./bin/deploy-plugins.sh
+8. Levantamos el ambiente y verificamos si el cambio realizado se reflejó.
+
+
+### Armado de entorno para desarrollo de los plugins ###
+
+Descarga la última versión DotCMS para que usemos como entorno de desarrollo:
+``` git clone --recursive git@github.com:dotCMS/core.git```
+
+1. Se verifica cuál va a ser la clase o archivo a modificar
+2. En una estructura básica de un plugin, nos posicionamos en la carpeta /src
+3. Armamos la estructura de carpetas original de esa clase o archivo dentro del /src
+4. Copiamos el código del archivo original, creamos un nuevo archivo y pegamos ese código.
+NOTA: El archivo debe contener el mismo nombre que el original.
+5. Modificamos el archivo y guardamos.
+
+### Editores ###
+#### Utilizando InteliJ ####
+
+
+#### Utilizando Eclipse ####
+=======
+PASO A PASO COMO HACER EL DESARROLLO Y DEPLOY DE LOS PLUGINS:
+1. Se verifica cuál va a ser la clase o archivo a modificar
+2. En una estructura básica de un plugin, nos posicionamos en la carpeta /src
+3. Armamos la estructura de carpetas original de esa clase o archivo dentro del /src
+4. Copiamos el código del archivo original, creamos un nuevo archivo y pegamos ese código. 
+NOTA: El archivo debe contener el mismo nombre que el original.
+5. Modificamos el archivo y guardamos.
+6. Nos posicionamos en la carpeta dotCMS_5.1.6/ y desde la linea de comandos hacemos: ./bin/undeploy-plugins.sh
+NOTA: El paso 6 lo hacemos si anteriormenhte realizamos un deploy plugin.
+7. Nos posicionamos en la carpeta dotCMS_5.1.6/ y desde la linea de comandos hacemos: ./bin/deploy-plugins.sh
+8. Levantamos el ambiente y verificamos si el cambio realizado se reflejó.
